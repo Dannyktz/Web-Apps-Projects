@@ -4,7 +4,7 @@ Follow these steps to install and run the project locally.
 Prerequisites
 Ensure you have the following installed:
 
-~~ Node.js (v18 or later)
+/n ~~ Node.js (v18 or later)
 ~~ npm
 ~~ MongoDB
 ~~ Git
