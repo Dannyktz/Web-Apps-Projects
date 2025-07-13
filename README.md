@@ -1,28 +1,54 @@
-🚀 Installation & Run Instructions
+## 🚀 Installation & Run Instructions
+
 Follow these steps to install and run the project locally.
 
-Prerequisites
+---
+
+### 📋 Prerequisites
+
 Ensure you have the following installed:
 
-/n ~~ Node.js (v18 or later)
-~~ npm
-~~ MongoDB
-~~ Git
+- Node.js (v18 or later)  
+- npm  
+- MongoDB  
+- Git
 
-1. Clone the Repository
+---
+
+### 📁 Clone the Repository:
+
 cd "Folder you want to put it"
-git https://github.com/Dannyktz/Web-Apps-Projects
 
-3. Install Dependencies
+git clone https://github.com/Dannyktz/Web-Apps-Projects
+
+---
+
+### 📦 Install Dependencies:
+
 npm install
-3. Set Up Environment Variables
-Create a .env file in the root directory:
-MONGO_URI=mongodb+srv://adminUser:Spending123!@dannyuniproject.onij9.mongodb.net/
+
+---
+
+### 📦  Set Up Environment Variables
+
+Create a .env file in the root directory and add the following:
+
+MONGO_URI=mongodb+srv://adminUser:Spending123!@dannyuniproject.onij9.mongodb.net/<br>
 PORT=5000
 
-4. Run the App ( In terminal )
-start http://localhost:5000
-node server.js
+---
 
-4.2 Run the App ( from file)
-run "start.cmd"
+### 📦  ▶️ Run the App
+
+✅ Option 1: Run from Terminal
+node server.js
+<br>
+Then open your browser and go to:<br>
+http://localhost:5000
+
+🖱️ Option 2: Run from File
+
+Simply double-click the file:<br>
+
+start.cmd
+
