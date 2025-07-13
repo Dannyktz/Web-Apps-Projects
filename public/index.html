@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags and external resources (fonts, CSS, chart.js) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monday Dashboard Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles/styles-main.css">
+</head>
+
+<!-- Main scripts for app functionality -->
+<script src="script.js"></script>
+<script src="spending.js"></script>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="img-style">
+                <img src="/assets/logo.png" class="logo-img" alt="Spending Plus Logo">
+            </div>
+            <button class="accordion">My Calculators</button>
+            <div class="panel">
+                <ul></ul>
+            </div>
+            <div class="panel-2">
+                <ul>
+                    <li><a href="account.html">🧾 Account</a></li>
+                    <li><a href="#" onclick="logout()">🔓 Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="top-bar">
+                <button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('show')">
+                    ☰
+                </button>
+                <div class="greeting">Welcome back <span id="accountUsername">Loading...</span>!</div>
+            </header>
+
+            <div class="budget-container">
+                <div class="calculator-container">
+                    <!-- Calculator Name Input -->
+                    <h1 class="h1-spending">
+                        <input id="calculatorNameInput" value="New Calculator" class="calculatorNameInput"
+                            onchange="calculatorName = this.value">
+                        <span id="calculatorSavedStatus" class="calculatorSavedStatus"></span>
+                    </h1>
+
+                    <!-- Settings and Income Section -->
+                    <div class="flex-row calculator-container">
+                        <!-- Settings (Currency, Savings %, SOS %) -->
+                        <div class="section settings-section flex-50">
+                            <h2 class="heading-section">⚙️ Settings</h2>
+                            <div class="settings-row">
+                                <label>Currency:</label>
+                                <select id="currencySetting" onchange="renderAll()">
+                                    <option value="R">R</option>
+                                    <option value="$">$</option>
+                                    <option value="€">€</option>
+                                </select>
+                            </div>
+                            <div class="settings-row">
+                                <label>Savings %:</label>
+                                <input type="number" id="savingsPercent" value="20" onchange="renderAll()">
+                            </div>
+                            <div class="settings-row">
+                                <label>SOS Fund %:</label>
+                                <input type="number" id="sosPercent" value="10" onchange="renderAll()">
+                            </div>
+                        </div>
+
+                        <!-- Income Table Section -->
+                        <div class="section income-section flex-50">
+                            <h2 class="heading-section">💰 Income</h2>
+                            <table id="incomeTable">
+                                <thead>
+                                    <tr>
+                                        <th>Source</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>Total Income:</strong></td>
+                                        <td id="totalIncome">0</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <button onclick="addIncomeRow()">Add Income Source</button>
+                        </div>
+                    </div>
+
+                    <!-- Spending Section -->
+                    <div class="section spending-section">
+                        <h2 class="heading-section">📊 Estimated Spending</h2>
+                        <table id="spendingTable">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Planned</th>
+                                    <th>Actual</th>
+                                    <th>Left</th>
+                                    <th>Type</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td id="totalPlanned">0</td>
+                                    <td id="totalActual">0</td>
+                                    <td id="totalLeft">0</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button onclick="addSpendingRow()">Add Spending Category</button>
+                    </div>
+
+                    <!-- Advanced Spending Tables -->
+                    <div class="section advanced-section">
+                        <h2 class="heading-section">📂 Advanced Category Tables</h2>
+                        <div id="advancedTables"></div>
+                    </div>
+
+                    <!-- Savings Summary Section -->
+                    <div class="section savings-section">
+                        <h2 class="heading-section">💼 Savings Summary</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>EST</th>
+                                    <th>ACTUAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>LEFT OVER</td>
+                                    <td id="savingsLeftEst">0</td>
+                                    <td id="savingsLeftAct">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Savings</td>
+                                    <td id="savingsTarget">0</td>
+                                    <td><input type="number" id="actualSavings" value="0" onchange="renderAll()"></td>
+                                </tr>
+                                <tr>
+                                    <td>SOS Fund</td>
+                                    <td id="sosTarget">0</td>
+                                    <td><input type="number" id="actualSos" value="0" onchange="renderAll()"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TOTAL Saved EST</strong></td>
+                                    <td id="savingsEstTotal">0</td>
+                                    <td id="savingsActualTotal">0</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Goal Reached</td>
+                                    <td id="goalReached">0%</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Left With</td>
+                                    <td id="leftWith"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <!-- Added after conceptual phase as an addition to allow users to see their breakdown in a chart view -->
+                <div class="dual-charts">
+                    <div class="chart-container">
+                        <h2>📊 Spending Breakdown</h2>
+                        <canvas id="spendingChart" height="120"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h2>💼 Savings Breakdown</h2>
+                        <canvas id="savingsChart" height="120"></canvas>
+                    </div>
+                </div>
+
+                <!-- Action Buttons (Save/Delete Calculator) -->
+                <div style="margin-top: 10px; padding-bottom: 20px; display: flex; gap: 10px;">
+                    <button onclick="saveCalculator()">💾 Save Calculator</button>
+                    <button onclick="deleteCalculator()" style="background-color: #dc3545;">🗑️ Delete Calculator</button>
+                </div>
+
+                <!-- Accordion Script for Sidebar -->
+                <script>
+                    var acc = document.getElementsByClassName("accordion");
+                    for (var i = 0; i < acc.length; i++) {
+                        acc[i].addEventListener("click", function () {
+                            this.classList.toggle("active");
+                            var panel = this.nextElementSibling;
+                            if (panel.style.display === "block") {
+                                panel.style.display = "none";
+                            } else {
+                                panel.style.display = "block";
+                            }
+                        });
+                    }
+                </script>
+
+                <!-- Popup Notification Container -->
+                <div id="popupMessage" class="popup">
+                    <span id="popupText"></span>
+                </div>
+
+                <!-- Modal for Duplicating Calculators -->
+                <div id="templateModal" class="modal-overlay">
+                    <div class="modal">
+                        <h3>📄 Duplicate a Calculator</h3>
+                        <select id="templateSelect" style="width: 100%; margin-top: 10px;"></select>
+                        <div style="text-align: right; margin-top: 15px;">
+                            <button onclick="duplicateSelectedTemplate()">Duplicate</button>
+                            <button onclick="closeTemplateModal()" style="background: #555;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+</body>
+
+<!-- DOM Load Handler for Displaying Username -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (user) {
+            document.getElementById("accountUsername").textContent = user.username;
+        }
+    });
+</script>
+
+</html>

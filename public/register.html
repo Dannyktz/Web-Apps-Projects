@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <!-- Meta tags and font import -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- External CSS for styling the register form -->
+    <link rel="stylesheet" href="styles/styles-login.css">
+</head>
+<body>
+    <!-- Main Authentication Container -->
+    <div class="auth-container">
+        <!-- Registration Form Section -->
+        <div class="register-container">
+            <!-- Logo Display -->
+            <div class="img-style">
+                <img src="/assets/logo.png" class="logo-img" alt="Spending Plus Logo">
+            </div>
+
+            <!-- Registration Form Heading -->
+            <h1>Register</h1>
+
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="Enter Email Address">
+            <span class="error-message" id="emailError"></span>
+
+            <!-- Username Field -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Choose a username">
+            <span class="error-message" id="usernameError"></span>
+
+            <!-- Password Field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Choose a password">
+            <span class="error-message" id="passwordError"></span>
+
+            <!-- Confirm Password Field -->
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" placeholder="Confirm Password">
+            <span class="error-message" id="confirmPasswordError"></span>
+
+            <!-- Register Button -->
+            <button onclick="register()">Register</button>
+
+            <!-- Link to Login Page -->
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Popup Notification Container -->
+    <div id="popupMessage" class="popup">
+        <span id="popupText"></span>
+    </div>
+
+    <!-- Main Script for Register Functionality -->
+    <script src="script.js"></script>
+</body>
+</html>

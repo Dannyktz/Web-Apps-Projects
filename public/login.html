@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and font import -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+
+    <!-- External CSS for login/register page -->
+    <link rel="stylesheet" href="styles/styles-login.css">
+</head>
+<body>
+    <!-- Main Authentication Container -->
+    <div class="auth-container">
+        <!-- Login Form Section -->
+        <div class="login-container">
+            <!-- Logo Image -->
+            <div class="img-style">
+                <img src="/assets/logo.png" class="logo-img" alt="Spending Plus Logo">
+            </div>
+
+            <!-- Login Form -->
+            <h1>Login</h1>
+            <label for="loginInput">Email or Username:</label>
+            <input type="text" id="loginInput" placeholder="Enter your email or username">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password">
+
+            <!-- Login Button -->
+            <button onclick="login()">Login</button>
+
+            <!-- Link to Registration Page -->
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Main script handling login logic -->
+    <script src="script.js"></script>
+
+    <!-- Popup Message Component -->
+    <div id="popupMessage" class="popup">
+        <span id="popupText"></span>
+    </div>
+</body>
+</html>

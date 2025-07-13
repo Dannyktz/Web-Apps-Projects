@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Page metadata and external stylesheet -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Account</title>
+  <link rel="stylesheet" href="styles/styles-main.css" />
+</head>
+<body>
+  <div class="container">
+      <!-- Sidebar navigation for switching between pages -->
+    <aside class="sidebar">
+      <div class="img-style">
+        <img src="/assets/logo.png" class="logo-img" alt="Spending Plus Logo">
+      </div>
+      <button class="accordion" onclick="window.location.href='index.html'">My Calculators</button>
+
+
+    </aside>
+
+    <!-- Main content area that displays account information -->
+    <main class="main-content">
+      <!-- Top bar with hamburger menu and welcome message -->
+      <header class="top-bar">
+        <button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('show')">☰</button>
+        <div class="greeting">Welcome back  <span id="accountUsername1">Loading...</span> !</div>
+    
+      </header>
+
+      <!-- Section displaying user account details -->
+      <div class="calculator-container">
+        <h1 class="h1-spending">👤 Account Details</h1>
+
+        <div class="settings-section-account">
+          <p><strong>Username:</strong> <span id="accountUsername">Loading...</span></p>
+          <p><strong>Email:</strong> <span id="accountEmail">Loading...</span></p>
+          <button onclick="resetPassword()">Reset Password</button>
+          <button onclick="logout()" style="background-color: #dc3545;">Logout</button>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Popup message element for feedback/alerts -->
+  <div id="popupMessage" class="popup">
+    <span id="popupText"></span>
+  </div>
+
+  <!-- JavaScript: loading user data from localStorage on page load -->
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (user) {
+        document.getElementById("accountUsername").textContent = user.username;
+        document.getElementById("accountUsername1").textContent = user.username;
+        document.getElementById("accountEmail").textContent = user.email;
+      }
+    });
+  </script>
+</body>
+</html>
