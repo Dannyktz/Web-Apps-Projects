@@ -54,3 +54,14 @@ Simply double-click the file:<br>
 
 start.cmd
 
+### 📚 JSDoc Documentation
+
+📂 Documentation Location
+The generated HTML files are located in:
+
+docs_phase3/documentation/index.html
+🔍 How to View
+Open the index.html file in your browser:
+
+docs_phase3/documentation/index.html
+or simply double-click it from your file explorer.
