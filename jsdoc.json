@@ -1,0 +1,9 @@
+{
+  "source": {
+    "include": ["server.js", "./public/script.js", "./public/spending.js"]
+  },
+  "opts": {
+    "destination": "./docs_phase3/documentation-jsdoc",
+    "recurse": true
+  }
+}

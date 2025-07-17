@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file script.js
  * Displays a styled popup message instead of using alert().
  * @param {string} message - The message to display.
@@ -44,11 +72,11 @@ function clearErrors() {
  */
 function validatePassword(password) {
   const minLength = 8;
-  const specialCharRegex = /[!@#$%^&*()_+[\]{}|;:'",.<>?/\\]/;
+  const specialCharRegex = /[!@#$%^&amp;*()_+[\]{}|;:'",.&lt;>?/\\]/;
   const uppercaseRegex = /[A-Z]/;
   const numberRegex = /[0-9]/;
 
-  if (password.length < minLength)
+  if (password.length &lt; minLength)
     return "Password must be at least 8 characters.";
   if (!specialCharRegex.test(password))
     return "Must include at least one special character.";
@@ -82,7 +110,7 @@ async function register() {
     showError("emailError", "Email is required.");
     hasError = true;
   }
-  if (!username || username.length < 5) {
+  if (!username || username.length &lt; 5) {
     showError("usernameError", "Username must be at least 5 characters.");
     hasError = true;
   }
@@ -166,33 +194,33 @@ function resetPassword() {
   form.style.marginTop = "15px";
 
   form.innerHTML = `
-        <h3>🔐 Change Password</h3>
+        &lt;h3>🔐 Change Password&lt;/h3>
 
-        <div class="settings-row">
-        <label>Current Password</label>
-        <div style="position: relative;">
-            <input type="password" id="currentPassword" />
-            <span onclick="togglePassword('currentPassword', this)" style="position:right; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️</span>
-        </div>
-        </div>
+        &lt;div class="settings-row">
+        &lt;label>Current Password&lt;/label>
+        &lt;div style="position: relative;">
+            &lt;input type="password" id="currentPassword" />
+            &lt;span onclick="togglePassword('currentPassword', this)" style="position:right; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️&lt;/span>
+        &lt;/div>
+        &lt;/div>
 
-        <div class="settings-row">
-        <label>New Password</label>
-        <div style="position: relative;">
-            <input type="password" id="newPassword" />
-            <span onclick="togglePassword('newPassword', this)" style="position:right; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️</span>
-        </div>
-        </div>
+        &lt;div class="settings-row">
+        &lt;label>New Password&lt;/label>
+        &lt;div style="position: relative;">
+            &lt;input type="password" id="newPassword" />
+            &lt;span onclick="togglePassword('newPassword', this)" style="position:right; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️&lt;/span>
+        &lt;/div>
+        &lt;/div>
 
-        <div class="settings-row">
-        <label>Confirm New Password</label>
-        <div style="position: relative;">
-            <input type="password" id="confirmNewPassword" />
-            <span onclick="togglePassword('confirmNewPassword', this)" style="position:right; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️</span>
-        </div>
-        </div>
+        &lt;div class="settings-row">
+        &lt;label>Confirm New Password&lt;/label>
+        &lt;div style="position: relative;">
+            &lt;input type="password" id="confirmNewPassword" />
+            &lt;span onclick="togglePassword('confirmNewPassword', this)" style="position:right; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁️&lt;/span>
+        &lt;/div>
+        &lt;/div>
 
-<button onclick="submitPasswordReset()">Update Password</button>
+&lt;button onclick="submitPasswordReset()">Update Password&lt;/button>
     `;
 
   container.appendChild(form);
@@ -278,11 +306,11 @@ function loadUserSession() {
   const isAuthPage =
     currentPage.includes("login.html") || currentPage.includes("register.html");
 
-  if (!user && !isAuthPage) {
+  if (!user &amp;&amp; !isAuthPage) {
     window.location.href = "login.html";
   }
 
-  if (user && document.getElementById("userName")) {
+  if (user &amp;&amp; document.getElementById("userName")) {
     document.getElementById("userName").textContent = user.username + " ▼";
   }
 }
@@ -299,3 +327,26 @@ function logout() {
 //Run session check when the page is fully loaded
 document.addEventListener("DOMContentLoaded", loadUserSession);
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addDetail">addDetail</a></li><li><a href="global.html#addIncomeRow">addIncomeRow</a></li><li><a href="global.html#addSpendingRow">addSpendingRow</a></li><li><a href="global.html#changeSpendingType">changeSpendingType</a></li><li><a href="global.html#closeTemplateModal">closeTemplateModal</a></li><li><a href="global.html#duplicateSelectedTemplate">duplicateSelectedTemplate</a></li><li><a href="global.html#formatCurrency">formatCurrency</a></li><li><a href="global.html#getCurrencySymbol">getCurrencySymbol</a></li><li><a href="global.html#getSavingsPercent">getSavingsPercent</a></li><li><a href="global.html#getSosPercent">getSosPercent</a></li><li><a href="global.html#loadCalculator">loadCalculator</a></li><li><a href="global.html#loadSidebarCalculators">loadSidebarCalculators</a></li><li><a href="global.html#openTemplateSelector">openTemplateSelector</a></li><li><a href="global.html#removeDetail">removeDetail</a></li><li><a href="global.html#removeIncomeRow">removeIncomeRow</a></li><li><a href="global.html#removeSpendingRow">removeSpendingRow</a></li><li><a href="global.html#renderAdvancedChart">renderAdvancedChart</a></li><li><a href="global.html#renderAll">renderAll</a></li><li><a href="global.html#saveCalculator">saveCalculator</a></li><li><a href="global.html#showUnsavedStatus">showUnsavedStatus</a></li><li><a href="global.html#updateActualFromDetails">updateActualFromDetails</a></li><li><a href="global.html#updateDetail">updateDetail</a></li><li><a href="global.html#updateIncomeField">updateIncomeField</a></li><li><a href="global.html#updateSpendingField">updateSpendingField</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jul 18 2025 01:22:09 GMT+0200 (South Africa Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

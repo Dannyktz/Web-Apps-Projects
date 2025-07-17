@@ -1,4 +1,32 @@
-let incomeRows = [];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/spending.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/spending.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let incomeRows = [];
 let spendingRows = [];
 let chart = new Chart();
 let currentCalculatorId = null;
@@ -6,7 +34,6 @@ let calculatorName = "New Calculator";
 let templateCache = [];
 
 /**
- * @file spending.js
  * Gets the selected currency symbol from the settings.
  * @returns {string} The selected currency symbol.
  */
@@ -15,7 +42,6 @@ function getCurrencySymbol() {
 }
 
 /**
- * @file spending.js
  * Gets the savings percentage as a decimal.
  * @returns {number} The savings percentage (e.g., 0.15 for 15%).
  */
@@ -23,7 +49,6 @@ function getSavingsPercent() {
   return parseFloat(document.getElementById("savingsPercent").value || 0) / 100;
 }
 /**
- * @file spending.js
  * Gets the SOS fund percentage as a decimal.
  * @returns {number} The SOS fund percentage (e.g., 0.05 for 5%).
  */
@@ -31,7 +56,6 @@ function getSosPercent() {
   return parseFloat(document.getElementById("sosPercent").value || 0) / 100;
 }
 /**
- * @file spending.js
  * Adds a new row to the income data structure.
  * Each row includes a source name and an amount.
  */
@@ -40,7 +64,6 @@ function addIncomeRow() {
   renderAll();
 }
 /**
- * @file spending.js
  * Updates a specific field of a given income row.
  * @param {number} index - The index of the income row to update.
  * @param {string} field - The field to update ("source" or "amount").
@@ -52,7 +75,6 @@ function updateIncomeField(index, field, value) {
   renderAll();
 }
 /**
- * @file spending.js
  * Removes an income row by its index.
  * @param {number} index - The index of the income row to remove.
  */
@@ -62,7 +84,6 @@ function removeIncomeRow(index) {
 }
 
 /**
- * @file spending.js
  * Adds a new spending row to the spending data structure.
  * Initializes with empty category, 0 planned/actual, and type "simple".
  */
@@ -77,7 +98,6 @@ function addSpendingRow() {
   renderAll();
 }
 /**
- * @file spending.js
  * Updates a specific field of a given spending row.
  * @param {number} index - The index of the spending row to update.
  * @param {string} field - The field to update ("category", "planned", "actual", etc.).
@@ -89,7 +109,6 @@ function updateSpendingField(index, field, value) {
   renderAll();
 }
 /**
- * @file spending.js
  * Changes the spending type for a given row (e.g., from "simple" to "advanced").
  * @param {number} index - The index of the spending row to update.
  * @param {string} type - The new spending type ("simple" or "advanced").
@@ -99,7 +118,6 @@ function changeSpendingType(index, type) {
   renderAll();
 }
 /**
- * @file spending.js
  * Adds a new detail entry to a specific spending row's details array.
  * Initializes with empty date, where, and amount.
  * @param {number} index - The index of the spending row to add the detail to.
@@ -109,7 +127,6 @@ function addDetail(index) {
   updateActualFromDetails(index);
 }
 /**
- * @file spending.js
  * Updates a specific field of a detail entry in a spending row.
  * @param {number} index - Index of the spending row.
  * @param {number} dIndex - Index of the detail entry within the spending row.
@@ -122,7 +139,6 @@ function updateDetail(index, dIndex, field, value) {
   updateActualFromDetails(index);
 }
 /**
- * @file spending.js
  * Recalculates the actual amount of a spending row by summing all detail amounts.
  * Updates the actual field and re-renders the UI.
  * @param {number} index - The index of the spending row to update.
@@ -136,7 +152,6 @@ function updateActualFromDetails(index) {
   renderAll();
 }
 /**
- * @file spending.js
  * Formats a number as currency using the selected currency symbol.
  * @param {number} value - The numeric value to format.
  * @returns {string} The formatted currency string.
@@ -148,7 +163,6 @@ function formatCurrency(value) {
   );
 }
 /**
- * @file spending.js
  * Displays a "Not Saved" status message in the calculator UI.
  * Intended to be called when the user makes unsaved changes.
  */
@@ -159,7 +173,6 @@ function showUnsavedStatus() {
   }
 }
 /**
- * @file spending.js
  * Removes a spending row at the specified index.
  * @param {number} index - The index of the spending row to remove.
  */
@@ -168,7 +181,6 @@ function removeSpendingRow(index) {
   renderAll();
 }
 /**
- * @file spending.js
  * Removes a detail row from a spending row's details array.
  * @param {number} index - The index of the spending row.
  * @param {number} dIndex - The index of the detail to remove.
@@ -180,7 +192,6 @@ function removeDetail(index, dIndex) {
 
 // === Chart Rendering for Advanced Sub-Spending ===
 /**
- * @file spending.js
  * Renders a line chart for advanced sub-spending details of a specific row.
  * @param {number} index - The index of the spending row.
  * @param {object} row - The spending row object containing category and details.
@@ -241,7 +252,6 @@ function renderAdvancedChart(index, row) {
   });
 }
 /**
- * @file spending.js
  * Renders the entire calculator UI.
  * - Income table
  * - Spending table (simple and advanced)
@@ -261,15 +271,15 @@ function renderAll() {
     totalIncome += row.amount;
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><input type="text" value="${row.source}" onchange="updateIncomeField(${i}, 'source', this.value)"></td>
-      <td><input type="number" value="${row.amount}" onchange="updateIncomeField(${i}, 'amount', this.value)"></td>
-      <td><button onclick="removeIncomeRow(${i})">❌</button></td>
+      &lt;td>&lt;input type="text" value="${row.source}" onchange="updateIncomeField(${i}, 'source', this.value)">&lt;/td>
+      &lt;td>&lt;input type="number" value="${row.amount}" onchange="updateIncomeField(${i}, 'amount', this.value)">&lt;/td>
+      &lt;td>&lt;button onclick="removeIncomeRow(${i})">❌&lt;/button>&lt;/td>
     `;
     incomeTbody.appendChild(tr);
   });
   document.getElementById("totalIncome").textContent =
     formatCurrency(totalIncome);
-   // === Render Spending Table & Advanced Details ===
+   // === Render Spending Table &amp; Advanced Details ===
   const spendingTbody = document.querySelector("#spendingTable tbody");
   const advancedContainer = document.getElementById("advancedTables");
   spendingTbody.innerHTML = "";
@@ -283,29 +293,29 @@ function renderAll() {
     const left = row.planned - row.actual;
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><input type="text" value="${
+      &lt;td>&lt;input type="text" value="${
         row.category
-      }" onchange="updateSpendingField(${i}, 'category', this.value)"></td>
-      <td><input type="number" value="${
+      }" onchange="updateSpendingField(${i}, 'category', this.value)">&lt;/td>
+      &lt;td>&lt;input type="number" value="${
         row.planned
-      }" onchange="updateSpendingField(${i}, 'planned', this.value)"></td>
-      <td>${
+      }" onchange="updateSpendingField(${i}, 'planned', this.value)">&lt;/td>
+      &lt;td>${
         row.type === "simple"
-          ? `<input type='number' value='${row.actual}' onchange="updateSpendingField(${i}, 'actual', this.value)">`
+          ? `&lt;input type='number' value='${row.actual}' onchange="updateSpendingField(${i}, 'actual', this.value)">`
           : formatCurrency(row.actual)
-      }</td>
-      <td>${formatCurrency(left)}</td>
-      <td>
-        <select onchange="changeSpendingType(${i}, this.value)">
-          <option value="simple" ${
+      }&lt;/td>
+      &lt;td>${formatCurrency(left)}&lt;/td>
+      &lt;td>
+        &lt;select onchange="changeSpendingType(${i}, this.value)">
+          &lt;option value="simple" ${
             row.type === "simple" ? "selected" : ""
-          }>Simple</option>
-          <option value="advanced" ${
+          }>Simple&lt;/option>
+          &lt;option value="advanced" ${
             row.type === "advanced" ? "selected" : ""
-          }>Advanced</option>
-        </select>
-      </td>
-      <td style="width:20px"><button onclick="removeSpendingRow(${i})">❌</button></td>
+          }>Advanced&lt;/option>
+        &lt;/select>
+      &lt;/td>
+      &lt;td style="width:20px">&lt;button onclick="removeSpendingRow(${i})">❌&lt;/button>&lt;/td>
 
     `;
     spendingTbody.appendChild(tr);
@@ -314,14 +324,14 @@ function renderAll() {
     if (row.type === "advanced") {
       const section = document.createElement("div");
       section.classList.add("advanced-section");
-      section.innerHTML = `<h3 style="margin-top:10px">${
+      section.innerHTML = `&lt;h3 style="margin-top:10px">${
         row.category || "Unnamed Category"
-      } Details</h3>`;
+      } Details&lt;/h3>`;
 
       const table = document.createElement("table");
       table.innerHTML = `
-        <thead><tr><th>Date</th><th>Where</th><th>Spent</th><th>Left</th><th></th></tr></thead>
-        <tbody>
+        &lt;thead>&lt;tr>&lt;th>Date&lt;/th>&lt;th>Where&lt;/th>&lt;th>Spent&lt;/th>&lt;th>Left&lt;/th>&lt;th>&lt;/th>&lt;/tr>&lt;/thead>
+        &lt;tbody>
           ${row.details
             .map((d, j) => {
               const runningTotal = row.details
@@ -329,24 +339,24 @@ function renderAll() {
                 .reduce((sum, s) => sum + s.amount, 0);
               const left = row.planned - runningTotal;
               return `
-              <tr>
-                <td><input type="date" value="${
+              &lt;tr>
+                &lt;td>&lt;input type="date" value="${
                   d.date
-                }" onchange="updateDetail(${i}, ${j}, 'date', this.value)"></td>
-                <td><input type="text" value="${
+                }" onchange="updateDetail(${i}, ${j}, 'date', this.value)">&lt;/td>
+                &lt;td>&lt;input type="text" value="${
                   d.where
-                }" onchange="updateDetail(${i}, ${j}, 'where', this.value)"></td>
-                <td><input type="number" value="${
+                }" onchange="updateDetail(${i}, ${j}, 'where', this.value)">&lt;/td>
+                &lt;td>&lt;input type="number" value="${
                   d.amount
-                }" onchange="updateDetail(${i}, ${j}, 'amount', this.value)"></td>
-                <td>${formatCurrency(left)}</td>
-                <td style="width:20px"><button onclick="removeDetail(${i}, ${j})">❌</button></td>
+                }" onchange="updateDetail(${i}, ${j}, 'amount', this.value)">&lt;/td>
+                &lt;td>${formatCurrency(left)}&lt;/td>
+                &lt;td style="width:20px">&lt;button onclick="removeDetail(${i}, ${j})">❌&lt;/button>&lt;/td>
 
-              </tr>
+              &lt;/tr>
             `;
             })
             .join("")}
-        </tbody>
+        &lt;/tbody>
       `;
       section.appendChild(table);
 
@@ -555,7 +565,6 @@ function renderAll() {
 }
 
 /**
- * @file spending.js
  * Saves the current calculator to the backend.
  * - Validates duplicate calculator names
  * - Sends calculator data (income, spending, settings)
@@ -564,7 +573,7 @@ function renderAll() {
  * - Shows a popup message and refreshes sidebar
  * 
  * @async
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function saveCalculator() {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -575,7 +584,7 @@ async function saveCalculator() {
 
   // Check if calculator name is already in use
   const nameAlreadyUsed = existingCals.some(
-    (c) => c.name === calculatorName && c._id !== currentCalculatorId
+    (c) => c.name === calculatorName &amp;&amp; c._id !== currentCalculatorId
   );
 
   if (nameAlreadyUsed) {
@@ -658,11 +667,10 @@ async function deleteCalculator() {
 }
 
 /**
- * @file spending.js
  * Loads a calculator by ID from the backend and populates the UI with its data.
  * @async
  * @param {string} id - The ID of the calculator to load.
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function loadCalculator(id) {
   const res = await fetch("/api/calculator/" + id);
@@ -684,9 +692,8 @@ async function loadCalculator(id) {
 
 // === Show modal with template calculators to duplicate ===
 /**
- * @file spending.js
  * Opens a modal dialog showing available calculator templates to duplicate.
- * @param {Array<Object>} calculators - Array of calculator objects to display as templates.
+ * @param {Array&lt;Object>} calculators - Array of calculator objects to display as templates.
  */
 function openTemplateSelector(calculators) {
   templateCache = calculators;
@@ -705,7 +712,6 @@ function openTemplateSelector(calculators) {
 }
 
 /**
- * @file spending.js
  * Closes the template modal window.
  */
 function closeTemplateModal() {
@@ -713,7 +719,6 @@ function closeTemplateModal() {
 }
 
 /**
- * @file spending.js
  * Duplicates the currently selected template into a new calculator instance.
  * Resets the currentCalculatorId, appends "Copy" to the name, and renders it.
  */
@@ -734,11 +739,10 @@ function duplicateSelectedTemplate() {
 }
 
 /**
- * @file spending.js
  * Loads and displays all calculators for the logged-in user in the sidebar.
  * Includes options to create a new calculator or load from a template.
  * @async
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function loadSidebarCalculators() {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -757,7 +761,7 @@ async function loadSidebarCalculators() {
 
   // Option to create new calculator
   const newLi = document.createElement("li");
-  newLi.innerHTML = `<span style="color: #a18fff;">➕ Add Calculator</span>`;
+  newLi.innerHTML = `&lt;span style="color: #a18fff;">➕ Add Calculator&lt;/span>`;
   newLi.onclick = () => {
     incomeRows = [];
     spendingRows = [];
@@ -772,13 +776,12 @@ async function loadSidebarCalculators() {
   
   // Option to create from template
   const fromTemplate = document.createElement("li");
-  fromTemplate.innerHTML = `<span style="color: #87e2ff;">📄 Add from Template</span>`;
+  fromTemplate.innerHTML = `&lt;span style="color: #87e2ff;">📄 Add from Template&lt;/span>`;
   fromTemplate.onclick = () => openTemplateSelector(calculators);
   list.appendChild(fromTemplate);
 }
 
 /**
- * @file spending.js
  * Initializes the calculator app once the DOM is loaded.
  */
 
@@ -787,3 +790,26 @@ document.addEventListener("DOMContentLoaded", () => {
     renderAll();
   });
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addDetail">addDetail</a></li><li><a href="global.html#addIncomeRow">addIncomeRow</a></li><li><a href="global.html#addSpendingRow">addSpendingRow</a></li><li><a href="global.html#changeSpendingType">changeSpendingType</a></li><li><a href="global.html#closeTemplateModal">closeTemplateModal</a></li><li><a href="global.html#duplicateSelectedTemplate">duplicateSelectedTemplate</a></li><li><a href="global.html#formatCurrency">formatCurrency</a></li><li><a href="global.html#getCurrencySymbol">getCurrencySymbol</a></li><li><a href="global.html#getSavingsPercent">getSavingsPercent</a></li><li><a href="global.html#getSosPercent">getSosPercent</a></li><li><a href="global.html#loadCalculator">loadCalculator</a></li><li><a href="global.html#loadSidebarCalculators">loadSidebarCalculators</a></li><li><a href="global.html#openTemplateSelector">openTemplateSelector</a></li><li><a href="global.html#removeDetail">removeDetail</a></li><li><a href="global.html#removeIncomeRow">removeIncomeRow</a></li><li><a href="global.html#removeSpendingRow">removeSpendingRow</a></li><li><a href="global.html#renderAdvancedChart">renderAdvancedChart</a></li><li><a href="global.html#renderAll">renderAll</a></li><li><a href="global.html#saveCalculator">saveCalculator</a></li><li><a href="global.html#showUnsavedStatus">showUnsavedStatus</a></li><li><a href="global.html#updateActualFromDetails">updateActualFromDetails</a></li><li><a href="global.html#updateDetail">updateDetail</a></li><li><a href="global.html#updateIncomeField">updateIncomeField</a></li><li><a href="global.html#updateSpendingField">updateSpendingField</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jul 18 2025 01:22:09 GMT+0200 (South Africa Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
