@@ -10,7 +10,7 @@ Ensure you have the following installed:
 
 - Node.js (v18 or later)  
 - npm  
-- MongoDB  
+- MongoDB  ( npm install mongoose )
 - Git
 
 ---
@@ -26,6 +26,8 @@ git clone https://github.com/Dannyktz/Web-Apps-Projects
 ### 📦 Install Dependencies:
 
 npm install
+
+npm install mongoose
 
 ---
 
